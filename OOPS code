@@ -1,0 +1,37 @@
+sale_data=[{
+    "product":["mobile","laptop","Refrigerator","Television","radio","sound","iron","sofaset"],
+    "quantity":[10,20,2,3,4,50,10,34],
+    "price":[10000,12000,3000,4200,1900,20000,3000,43000]}]
+
+class Sale_Analysis:
+  def __init__(self,sale):
+    self.data=sale[0]
+  def total_sale(self):
+     total=0
+     for p,q in zip(self.data["price"],self.data["quantity"]):
+              total+=p*q
+     return total
+  def Average_sale(self):
+     return self.total_sale()/len(self.data["product"])
+  def max_sale(self):
+    return max(self.data["price"])
+  def min_sale(self):
+    return min(self.data["price"])
+  def top_product(self):
+    max_value=0
+    product_name=None
+    for prod,p,q in zip(self.data["product"],self.data["price"],self.data["quantity"]):
+      total=self.total_sale()
+      if total>max_value:
+        max_value=total
+        product_name=prod
+    return product_name
+  def display(self):
+    print("Total sale :",self.total_sale())
+    print("Average sale:",self.Average_sale())
+    print("Maximum price :",self.max_sale())
+    print("minimum price :",self.min_sale())
+    print("Top product :",self.top_product())
+
+obj=Sale_Analysis(sale_data)
+obj.display()
